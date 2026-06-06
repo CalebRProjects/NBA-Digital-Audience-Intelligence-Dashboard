@@ -1,6 +1,6 @@
 team,conference,total_videos,total_views,total_likes,total_comments,total_engagements,weighted_engagement_rate,avg_views_per_day,avg_comment_sentiment,avg_positive_comment_pct,avg_negative_comment_pct
-Los Angeles Lakers,West,20,1062955,18178,1101,19279,0.0181,2510.24,0.2638,0.4097,0.1751
-New York Knicks,East,20,816296,38919,1403,40322,0.0494,7125.87,0.3139,0.4355,0.1113
-Golden State Warriors,West,20,792969,34446,1156,35602,0.0449,4669.97,0.4295,0.496,0.1415
-Oklahoma City Thunder,West,20,293636,0,2945,2945,0.01,7340.9,0.7179,0.5921,0.1693
-Boston Celtics,East,20,97303,7171,282,7453,0.0766,688,0.2899,0.419,0.1615
+Los Angeles Lakers,West,20,1062955,18178,1101,19279,0.0181,2009.45,0.2638,0.4097,0.1751
+New York Knicks,East,20,816296,38919,1403,40322,0.0494,4022.98,0.3139,0.4355,0.1113
+Golden State Warriors,West,20,792969,34446,1156,35602,0.0449,2773.28,0.4295,0.496,0.1415
+Oklahoma City Thunder,West,20,293636,0,2945,2945,0.01,2446.97,0.7179,0.5921,0.1693
+Boston Celtics,East,20,97303,7171,282,7453,0.0766,351.1,0.2899,0.419,0.1615

@@ -13,6 +13,7 @@ library(tidyverse)
 library(lubridate)
 library(janitor)
 library(stringr)
+library(textutils)
 
 # File paths -------------------------------------------------------------
 
@@ -35,6 +36,9 @@ video_sentiment_summary <- readr::read_csv(video_sentiment_summary_path, show_co
 videos_clean <- videos_raw |>
   left_join(video_sentiment_summary, by = "video_id") |>
   mutate(
+    video_title = textutils::HTMLdecode(video_title),
+    video_description = textutils::HTMLdecode(video_description),
+    
     published_at_datetime = ymd_hms(published_at),
     published_date = as_date(published_at_datetime),
     published_hour = hour(published_at_datetime),
@@ -88,12 +92,14 @@ videos_clean <- videos_raw |>
       TRUE ~ "Neutral"
     ),
     
-    high_engagement_flag = engagement_rate >= quantile(engagement_rate, 0.75, na.rm = TRUE),
-    high_negative_sentiment_flag = negative_comment_pct >= quantile(negative_comment_pct, 0.75, na.rm = TRUE),
+    high_engagement_flag = engagement_rate >= quantile(engagement_rate, 0.90, na.rm = TRUE),
+    high_negative_sentiment_flag = negative_comment_pct >= quantile(negative_comment_pct, 0.90, na.rm = TRUE) &
+      comments_pulled >= 10,
+    
     monitoring_priority = case_when(
       high_engagement_flag & high_negative_sentiment_flag ~ "High Engagement / High Negative Sentiment",
-      high_engagement_flag ~ "High Engagement",
       high_negative_sentiment_flag ~ "High Negative Sentiment",
+      high_engagement_flag ~ "High Engagement",
       TRUE ~ "Standard"
     )
   ) |>
