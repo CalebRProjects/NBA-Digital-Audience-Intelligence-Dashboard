@@ -17,6 +17,13 @@ db_path <- "data/exports/nba_digital_audience.db"
 videos_clean <- readr::read_csv(videos_clean_path, show_col_types = FALSE) |>
   janitor::clean_names()
 
+videos_clean <- videos_clean |>
+  mutate(
+    published_at = as.character(published_at),
+    published_date = as.character(published_date),
+    published_month = as.character(published_month)
+  )
+
 glimpse(videos_clean)
 
 con <- DBI::dbConnect(
