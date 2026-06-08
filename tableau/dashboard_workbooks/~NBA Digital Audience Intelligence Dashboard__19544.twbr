@@ -553,7 +553,7 @@
       <column caption='Message Theme' datatype='string' name='[message_theme]' role='dimension' type='nominal' />
       <column caption='Monitoring Priority' datatype='string' name='[monitoring_priority]' role='dimension' type='nominal' />
       <column caption='Negative Comment %' datatype='real' default-format='p0.00%' name='[negative_comment_pct]' role='measure' type='quantitative' />
-      <column caption='Neutral Comment Pct' datatype='real' default-format='p0.00%' name='[neutral_comment_pct]' role='measure' type='quantitative' />
+      <column caption='Neutral Comment %' datatype='real' default-format='p0.00%' name='[neutral_comment_pct]' role='measure' type='quantitative' />
       <column caption='Positive Comment %' datatype='real' default-format='p0.00%' name='[positive_comment_pct]' role='measure' type='quantitative' />
       <column caption='Published At' datatype='datetime' name='[published_at]' role='dimension' type='ordinal' />
       <column caption='Published Date' datatype='date' name='[published_date]' role='dimension' type='ordinal' />
@@ -567,6 +567,7 @@
       <column caption='Video' datatype='string' name='[video_title]' role='dimension' type='nominal' />
       <column caption='Views' datatype='integer' name='[view_count]' role='measure' type='quantitative' />
       <column caption='Views Per Day' datatype='real' name='[views_per_day]' role='measure' type='quantitative' />
+      <column-instance column='[negative_comment_pct]' derivation='Avg' name='[avg:negative_comment_pct:qk]' pivot='key' type='quantitative' />
       <column-instance column='[team]' derivation='None' name='[none:team:nk]' pivot='key' type='nominal' />
       <extract _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' object-id='' units='records'>
         <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='C:/Users/caleb/AppData/Local/Temp/TableauTemp/#TableauTemp_1tzgjwp0xumw2717uw1su116fpmu.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='' username='tableau_internal_user'>
@@ -585,6 +586,7 @@
               <approx-count>100</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>team</remote-name>
@@ -599,6 +601,7 @@
               <approx-count>5</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>team_abbreviation</remote-name>
@@ -613,6 +616,7 @@
               <approx-count>5</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>conference</remote-name>
@@ -627,6 +631,7 @@
               <approx-count>2</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>channel_name</remote-name>
@@ -641,6 +646,7 @@
               <approx-count>5</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>channel_id</remote-name>
@@ -655,6 +661,7 @@
               <approx-count>5</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>channel_title</remote-name>
@@ -669,6 +676,7 @@
               <approx-count>5</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>video_title</remote-name>
@@ -683,6 +691,7 @@
               <approx-count>99</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>video_description</remote-name>
@@ -697,6 +706,7 @@
               <approx-count>65</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>published_at</remote-name>
@@ -710,6 +720,7 @@
               <aggregation>Year</aggregation>
               <approx-count>100</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>published_date</remote-name>
@@ -723,6 +734,7 @@
               <aggregation>Year</aggregation>
               <approx-count>31</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>published_hour</remote-name>
@@ -736,6 +748,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>17</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>published_month</remote-name>
@@ -749,6 +762,7 @@
               <aggregation>Year</aggregation>
               <approx-count>2</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>duration</remote-name>
@@ -763,6 +777,7 @@
               <approx-count>87</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>content_type</remote-name>
@@ -777,6 +792,7 @@
               <approx-count>5</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>message_theme</remote-name>
@@ -791,6 +807,7 @@
               <approx-count>6</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>view_count</remote-name>
@@ -804,6 +821,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>100</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>like_count</remote-name>
@@ -818,6 +836,7 @@
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>comment_count</remote-name>
@@ -831,6 +850,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>71</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>like_count_clean</remote-name>
@@ -844,6 +864,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>80</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>comment_count_clean</remote-name>
@@ -857,6 +878,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>71</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>engagement_count</remote-name>
@@ -870,6 +892,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>98</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>engagement_rate</remote-name>
@@ -883,6 +906,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>100</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>likes_per_1k_views</remote-name>
@@ -896,6 +920,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>81</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>comments_per_1k_views</remote-name>
@@ -909,6 +934,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>100</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>views_per_day</remote-name>
@@ -922,6 +948,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>100</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>comments_pulled</remote-name>
@@ -935,6 +962,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>34</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>avg_comment_sentiment</remote-name>
@@ -948,6 +976,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>98</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>positive_comment_pct</remote-name>
@@ -961,6 +990,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>66</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>neutral_comment_pct</remote-name>
@@ -974,6 +1004,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>63</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>negative_comment_pct</remote-name>
@@ -987,6 +1018,7 @@
               <aggregation>Sum</aggregation>
               <approx-count>61</approx-count>
               <contains-null>true</contains-null>
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>sentiment_bucket</remote-name>
@@ -1001,6 +1033,7 @@
               <approx-count>3</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
             <metadata-record class='column'>
               <remote-name>monitoring_priority</remote-name>
@@ -1015,6 +1048,7 @@
               <approx-count>4</approx-count>
               <contains-null>true</contains-null>
               <collation flag='0' name='LEN_RUS' />
+              <object-id>[tableau_video_level_export.csv_BC3D917F48C341089F16B92E9DFB7398]</object-id>
             </metadata-record>
           </metadata-records>
         </connection>
@@ -1037,6 +1071,11 @@
             </map>
             <map to='#f58426'>
               <bucket>&quot;New York Knicks&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk]&quot;</bucket>
             </map>
           </encoding>
         </style-rule>
@@ -1135,6 +1174,16 @@
       </object-graph>
     </datasource>
   </datasources>
+  <actions>
+    <action caption='Highlight 1 (generated)' name='[Action1_E3079A263D9941CB8DA594A2021712F4]'>
+      <activation auto-clear='true' type='on-select' />
+      <source type='sheet' worksheet='Average Sentiment by Content Type' />
+      <command command='tsc:brush'>
+        <param name='field-captions' value='Measure Names' />
+        <param name='target' value='Average Sentiment by Content Type' />
+      </command>
+    </action>
+  </actions>
   <worksheets>
     <worksheet name='Average Sentiment'>
       <layout-options>
@@ -1189,7 +1238,9 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run fontname='Tableau Semibold' fontsize='18'>Sentiment by Content Type</run>
+            <run fontname='Tableau Semibold' fontsize='16'>Sentiment by Content Type</run>
+            <run>Æ&#10;</run>
+            <run fontsize='9'>Dashed reference lines show the sample average for each sentiment measure.</run>
             <run>Æ&#10;</run>
           </formatted-text>
         </title>
@@ -1200,53 +1251,110 @@
             <datasource caption='tableau_video_level_export' name='federated.1rgcbei1xjtpqn1dko4c416qswt6' />
           </datasources>
           <datasource-dependencies datasource='federated.1rgcbei1xjtpqn1dko4c416qswt6'>
-            <column-instance column='[avg_comment_sentiment]' derivation='Avg' name='[avg:avg_comment_sentiment:qk]' pivot='key' type='quantitative' />
             <column-instance column='[negative_comment_pct]' derivation='Avg' name='[avg:negative_comment_pct:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[neutral_comment_pct]' derivation='Avg' name='[avg:neutral_comment_pct:qk]' pivot='key' type='quantitative' />
             <column-instance column='[positive_comment_pct]' derivation='Avg' name='[avg:positive_comment_pct:qk]' pivot='key' type='quantitative' />
-            <column caption='Avg Comment Sentiment' datatype='real' name='[avg_comment_sentiment]' role='measure' type='quantitative' />
             <column caption='Content Type' datatype='string' name='[content_type]' role='dimension' type='nominal' />
             <column caption='Negative Comment %' datatype='real' default-format='p0.00%' name='[negative_comment_pct]' role='measure' type='quantitative' />
+            <column caption='Neutral Comment %' datatype='real' default-format='p0.00%' name='[neutral_comment_pct]' role='measure' type='quantitative' />
             <column-instance column='[content_type]' derivation='None' name='[none:content_type:nk]' pivot='key' type='nominal' />
             <column caption='Positive Comment %' datatype='real' default-format='p0.00%' name='[positive_comment_pct]' role='measure' type='quantitative' />
+            <column-instance column='[negative_comment_pct]' derivation='Sum' name='[sum:negative_comment_pct:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[neutral_comment_pct]' derivation='Sum' name='[sum:neutral_comment_pct:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[positive_comment_pct]' derivation='Sum' name='[sum:positive_comment_pct:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
+          <filter class='categorical' column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[:Measure Names]'>
+            <groupfilter function='union' user:op='manual'>
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1rgcbei1xjtpqn1dko4c416qswt6].[sum:negative_comment_pct:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1rgcbei1xjtpqn1dko4c416qswt6].[sum:neutral_comment_pct:qk]&quot;' />
+              <groupfilter function='member' level='[:Measure Names]' member='&quot;[federated.1rgcbei1xjtpqn1dko4c416qswt6].[sum:positive_comment_pct:qk]&quot;' />
+            </groupfilter>
+          </filter>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[none:content_type:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:neutral_comment_pct:qk]' shelf='rows' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.1rgcbei1xjtpqn1dko4c416qswt6].[:Measure Names]</column>
+          </slices>
           <aggregation value='true' />
         </view>
         <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:neutral_comment_pct:qk]' field-type='quantitative' max='0.65' min='0.0' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:positive_comment_pct:qk]' field-type='quantitative' max='0.65' min='0.0' range-type='fixed' scope='cols' type='space' />
+            <encoding attr='space' class='0' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk]' field-type='quantitative' max='0.65' min='0.0' range-type='fixed' scope='cols' type='space' />
+          </style-rule>
           <style-rule element='label'>
-            <format attr='text-format' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:avg_comment_sentiment:qk]' value='n#,##0.0;-#,##0.0' />
+            <format attr='text-format' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk]' value='p0%' />
+            <format attr='text-format' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:neutral_comment_pct:qk]' value='p0%' />
+            <format attr='text-format' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:positive_comment_pct:qk]' value='p0%' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+            <format attr='line-visibility' id='refline0' value='on' />
+            <format attr='line-pattern-only' id='refline0' value='dashed' />
+            <format attr='stroke-color' id='refline0' value='#818b914b' />
+            <format attr='fill-above' id='refline1' value='#00000000' />
+            <format attr='fill-below' id='refline1' value='#00000000' />
+            <format attr='line-visibility' id='refline1' value='on' />
+            <format attr='line-pattern-only' id='refline1' value='dashed' />
+            <format attr='stroke-color' id='refline1' value='#818b914b' />
+            <format attr='fill-above' id='refline2' value='#00000000' />
+            <format attr='fill-below' id='refline2' value='#00000000' />
+            <format attr='line-visibility' id='refline2' value='on' />
+            <format attr='line-pattern-only' id='refline2' value='dashed' />
+            <format attr='stroke-color' id='refline2' value='#818b914b' />
           </style-rule>
         </style>
         <panes>
-          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+          <pane id='5' selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
             <mark class='Bar' />
-            <encodings>
-              <tooltip column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:avg_comment_sentiment:qk]' />
-            </encodings>
+            <reference-line axis-column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:positive_comment_pct:qk]' enable-instant-analytics='true' formula='average' id='refline0' label-type='none' probability='95' scope='per-pane' value-column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:positive_comment_pct:qk]' z-order='1' />
+            <reference-line axis-column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:neutral_comment_pct:qk]' enable-instant-analytics='true' formula='average' id='refline1' label-type='none' probability='95' scope='per-pane' value-column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:neutral_comment_pct:qk]' z-order='2' />
+            <reference-line axis-column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk]' enable-instant-analytics='true' formula='average' id='refline2' label-type='none' probability='95' scope='per-pane' value-column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk]' z-order='3' />
           </pane>
-          <pane id='3' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk]'>
+          <pane id='6' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:neutral_comment_pct:qk]'>
             <view>
               <breakdown value='auto' />
             </view>
             <mark class='Bar' />
-            <encodings>
-              <tooltip column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:avg_comment_sentiment:qk]' />
-            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#b4b4b4' />
+                <format attr='has-stroke' value='false' />
+              </style-rule>
+            </style>
           </pane>
-          <pane id='4' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:positive_comment_pct:qk]'>
+          <pane id='7' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:positive_comment_pct:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#72b966' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='9' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk]'>
             <view>
               <breakdown value='auto' />
             </view>
             <mark class='Bar' />
             <encodings>
-              <tooltip column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:avg_comment_sentiment:qk]' />
+              <color column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[:Measure Names]' />
             </encodings>
           </pane>
         </panes>
         <rows>[federated.1rgcbei1xjtpqn1dko4c416qswt6].[none:content_type:nk]</rows>
-        <cols>([federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk] + [federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:positive_comment_pct:qk])</cols>
+        <cols>([federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:positive_comment_pct:qk] + ([federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:neutral_comment_pct:qk] + [federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:negative_comment_pct:qk]))</cols>
       </table>
       <simple-id uuid='{CC9713F9-FF53-4755-80FC-87AE6E98F2B0}' />
     </worksheet>
@@ -1254,7 +1362,7 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run fontname='Tableau Semibold' fontsize='18'>Discussion Rate by Content Type</run>
+            <run fontname='Tableau Semibold' fontsize='16'>Discussion Rate by Content Type</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -1274,13 +1382,25 @@
           </shelf-sorts>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='label'>
+            <format attr='text-format' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[avg:comments_per_1k_views:qk]' value='n#,##0.0;-#,##0.0' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
               <breakdown value='auto' />
             </view>
             <mark class='Automatic' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#f9a655' />
+              </style-rule>
+            </style>
           </pane>
         </panes>
         <rows>[federated.1rgcbei1xjtpqn1dko4c416qswt6].[none:content_type:nk]</rows>
@@ -1288,11 +1408,11 @@
       </table>
       <simple-id uuid='{6B3FE5F2-2367-4B92-9043-0DB0FC8ECB92}' />
     </worksheet>
-    <worksheet name='Content Type by Total Views'>
+    <worksheet name='Content Type by Views'>
       <layout-options>
         <title>
           <formatted-text>
-            <run fontname='Tableau Semibold' fontsize='18'>&lt;Sheet Name&gt;</run>
+            <run fontname='Tableau Semibold' fontsize='16'>&lt;Sheet Name&gt;</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -1331,6 +1451,9 @@
           <style-rule element='label'>
             <format attr='text-format' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[sum:view_count:qk]' value='n#,##0,,.0M' />
           </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
         </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
@@ -1363,6 +1486,11 @@
                 <run bold='true'><![CDATA[<[federated.1rgcbei1xjtpqn1dko4c416qswt6].[usr:Calculation_1882098831056897:qk]>]]></run>
               </formatted-text>
             </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#456a93' />
+              </style-rule>
+            </style>
           </pane>
         </panes>
         <rows>[federated.1rgcbei1xjtpqn1dko4c416qswt6].[none:content_type:nk]</rows>
@@ -1370,11 +1498,11 @@
       </table>
       <simple-id uuid='{66FF439B-95FA-4DF6-ABDB-C7C0B0AF0BED}' />
     </worksheet>
-    <worksheet name='Content Type by Weighted Engagement %'>
+    <worksheet name='Engagement Rate by Content Type'>
       <layout-options>
         <title>
           <formatted-text>
-            <run fontname='Tableau Semibold' fontsize='18'>Engagement % by Content Type</run>
+            <run fontname='Tableau Semibold' fontsize='16'>Engagement % by Content Type</run>
             <run>Æ&#10;</run>
           </formatted-text>
         </title>
@@ -1402,7 +1530,22 @@
           </shelf-sorts>
           <aggregation value='true' />
         </view>
-        <style />
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[usr:Calculation_1882098831056897:qk]' field-type='quantitative' max='0.045' min='0.0' range-type='fixed' scope='cols' type='space' />
+          </style-rule>
+          <style-rule element='field-labels-decoration'>
+            <format attr='font-style' value='normal' />
+            <format attr='font-weight' value='normal' />
+            <format attr='text-orientation' value='-90' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='text-format' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[usr:Calculation_1882098831056897:qk]' value='p0.0%' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+        </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
             <view>
@@ -1414,6 +1557,11 @@
               <tooltip column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[sum:view_count:qk]' />
               <tooltip column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[cnt:video_title:qk]' />
             </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#6d00a3' />
+              </style-rule>
+            </style>
           </pane>
         </panes>
         <rows>[federated.1rgcbei1xjtpqn1dko4c416qswt6].[none:content_type:nk]</rows>
@@ -1421,11 +1569,11 @@
       </table>
       <simple-id uuid='{00F25FC1-B4A8-4C0A-A14A-B82D638BA5AD}' />
     </worksheet>
-    <worksheet name='Message Theme by Total Views'>
+    <worksheet name='Message Theme by Views'>
       <layout-options>
         <title>
           <formatted-text>
-            <run fontname='Tableau Semibold' fontsize='18'>&lt;Sheet Name&gt;</run>
+            <run fontname='Tableau Semibold' fontsize='16'>&lt;Sheet Name&gt;</run>
           </formatted-text>
         </title>
       </layout-options>
@@ -1458,6 +1606,9 @@
           <style-rule element='label'>
             <format attr='text-format' field='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[sum:view_count:qk]' value='n#,##0,,.0M;-#,##0,,.0M' />
           </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
         </style>
         <panes>
           <pane selection-relaxation-option='selection-relaxation-allow'>
@@ -1470,6 +1621,11 @@
               <tooltip column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[usr:Calculation_1882098831056897:qk]' />
               <tooltip column='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[sum:avg_comment_sentiment:qk]' />
             </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#456a93' />
+              </style-rule>
+            </style>
           </pane>
         </panes>
         <rows>[federated.1rgcbei1xjtpqn1dko4c416qswt6].[none:message_theme:nk]</rows>
@@ -2032,7 +2188,8 @@
       <layout-options>
         <title>
           <formatted-text>
-            <run>&lt;Sheet Name&gt;&#10;</run>
+            <run fontname='Tableau Semibold'>&lt;Sheet Name&gt;</run>
+            <run>Æ&#10;</run>
             <run fontsize='12'>Content format, message theme, engagement quality, and comment response</run>
           </formatted-text>
         </title>
@@ -2041,8 +2198,8 @@
       <size sizing-mode='automatic' />
       <zones>
         <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
-          <zone h='98214' id='5' param='vert' type-v2='layout-flow' w='99062' x='469' y='893'>
-            <zone h='7255' id='7' type-v2='title' w='99062' x='469' y='893'>
+          <zone h='94627' id='5' param='vert' type-v2='layout-flow' w='99064' x='468' y='893'>
+            <zone fixed-size='59' h='7478' id='7' is-fixed='true' type-v2='title' w='99064' x='468' y='893'>
               <zone-style>
                 <format attr='border-color' value='#000000' />
                 <format attr='border-style' value='none' />
@@ -2050,8 +2207,8 @@
                 <format attr='margin' value='4' />
               </zone-style>
             </zone>
-            <zone h='90959' id='6' type-v2='layout-basic' w='99062' x='469' y='8148'>
-              <zone h='30316' id='8' name='Content Type by Total Views' w='49531' x='469' y='8148'>
+            <zone h='87149' id='6' type-v2='layout-basic' w='99064' x='468' y='8371'>
+              <zone h='23879' id='8' name='Content Type by Views' w='49514' x='468' y='8371'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2059,7 +2216,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='30323' id='9' name='Average Sentiment by Content Type' w='99062' x='469' y='68784'>
+              <zone h='39364' id='9' name='Average Sentiment by Content Type' w='85364' x='468' y='56156'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2067,7 +2224,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='30320' id='10' name='Message Theme by Total Views' w='49531' x='469' y='38464'>
+              <zone h='23879' id='10' name='Message Theme by Views' w='49550' x='49982' y='8371'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2075,7 +2232,7 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='30320' id='11' name='Comments per 1K Views by Content Type' w='49531' x='50000' y='38464'>
+              <zone h='23906' id='11' name='Comments per 1K Views by Content Type' w='49550' x='49982' y='32250'>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2083,7 +2240,24 @@
                   <format attr='margin' value='4' />
                 </zone-style>
               </zone>
-              <zone h='30316' id='12' name='Content Type by Weighted Engagement %' w='49531' x='50000' y='8148'>
+              <zone h='23906' id='12' name='Engagement Rate by Content Type' w='49514' x='468' y='32250'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone forceUpdate='true' h='39364' id='15' type-v2='text' w='13700' x='85832' y='56156'>
+                <formatted-text>
+                  <run bold='true' fontcolor='#555555' fontname='Tableau Semibold' fontsize='11' underline='true'>Key Takeaways</run>
+                  <run>Æ&#10;&#10;</run>
+                  <run fontname='Tableau Semibold' fontsize='10'>Shorts drove the most reach, making them the strongest format for broad audience exposure.</run>
+                  <run>Æ&#10;&#10;</run>
+                  <run fontname='Tableau Semibold' fontsize='10'>Interview/Press generated the highest discussion rate and strongest sentiment, but lower engagement efficiency.</run>
+                  <run>Æ&#10;&#10;</run>
+                  <run fontname='Tableau Semibold' fontsize='10'>Playoff Stakes and Star Player themes accounted for most views, showing the value of high-stakes and player-driven storylines.</run>
+                </formatted-text>
                 <zone-style>
                   <format attr='border-color' value='#000000' />
                   <format attr='border-style' value='none' />
@@ -2092,6 +2266,17 @@
                 </zone-style>
               </zone>
             </zone>
+          </zone>
+          <zone forceUpdate='true' h='3587' id='16' type-v2='text' w='99064' x='468' y='95520'>
+            <formatted-text>
+              <run fontcolor='#555555' fontsize='8'>Note: Behind the Scenes includes one video in this MVP sample; comparisons should be interpreted directionally.</run>
+            </formatted-text>
+            <zone-style>
+              <format attr='border-color' value='#000000' />
+              <format attr='border-style' value='none' />
+              <format attr='border-width' value='0' />
+              <format attr='margin' value='4' />
+            </zone-style>
           </zone>
           <zone-style>
             <format attr='border-color' value='#000000' />
@@ -2124,7 +2309,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='235' h='30319' id='8' is-fixed='true' name='Content Type by Total Views' w='49531' x='469' y='8148'>
+                <zone fixed-size='235' h='30319' id='8' is-fixed='true' name='Content Type by Views' w='49531' x='469' y='8148'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2133,7 +2318,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='235' h='30319' id='12' is-fixed='true' name='Content Type by Weighted Engagement %' w='49531' x='50000' y='8148'>
+                <zone fixed-size='235' h='30319' id='12' is-fixed='true' name='Engagement Rate by Content Type' w='49531' x='50000' y='8148'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2142,7 +2327,7 @@
                     <format attr='padding' value='0' />
                   </zone-style>
                 </zone>
-                <zone fixed-size='234' h='30320' id='10' is-fixed='true' name='Message Theme by Total Views' w='49531' x='469' y='38467'>
+                <zone fixed-size='234' h='30320' id='10' is-fixed='true' name='Message Theme by Views' w='49531' x='469' y='38467'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
                     <format attr='border-style' value='none' />
@@ -2437,7 +2622,7 @@
         </viewpoint>
         <viewpoint name='Weighted Engagement Rate by Team' />
       </viewpoints>
-      <active id='13' />
+      <active id='-1' />
       <simple-id uuid='{C6CDE897-2878-42EA-A7BC-39EFF9385AFA}' />
     </window>
     <window class='worksheet' name='Total Views'>
@@ -2661,18 +2846,22 @@
       </viewpoint>
       <simple-id uuid='{53728C8E-7403-466A-9836-522D7B717E24}' />
     </window>
-    <window class='dashboard' name='Content &amp; Audience Response'>
+    <window class='dashboard' maximized='true' name='Content &amp; Audience Response'>
       <viewpoints>
-        <viewpoint name='Average Sentiment by Content Type' />
+        <viewpoint name='Average Sentiment by Content Type'>
+          <zoom type='fit-height' />
+        </viewpoint>
         <viewpoint name='Comments per 1K Views by Content Type' />
-        <viewpoint name='Content Type by Total Views' />
-        <viewpoint name='Content Type by Weighted Engagement %' />
-        <viewpoint name='Message Theme by Total Views' />
+        <viewpoint name='Content Type by Views' />
+        <viewpoint name='Engagement Rate by Content Type' />
+        <viewpoint name='Message Theme by Views'>
+          <zoom type='fit-width' />
+        </viewpoint>
       </viewpoints>
-      <active id='10' />
+      <active id='11' />
       <simple-id uuid='{55B167D9-1AEC-4F86-B4D5-C65D7EDF472B}' />
     </window>
-    <window class='worksheet' name='Content Type by Total Views'>
+    <window class='worksheet' name='Content Type by Views'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -2695,7 +2884,7 @@
       </cards>
       <simple-id uuid='{DB7A63F4-E71E-4BC0-9D15-335F4EC858FF}' />
     </window>
-    <window class='worksheet' name='Content Type by Weighted Engagement %'>
+    <window class='worksheet' name='Engagement Rate by Content Type'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -2718,7 +2907,7 @@
       </cards>
       <simple-id uuid='{4BB441CE-1A80-4DB5-8FCB-7ACB30587212}' />
     </window>
-    <window class='worksheet' name='Message Theme by Total Views'>
+    <window class='worksheet' name='Message Theme by Views'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -2764,7 +2953,7 @@
       </cards>
       <simple-id uuid='{4D90EEA3-4A8D-4E3B-BE61-FDC9B2306E58}' />
     </window>
-    <window class='worksheet' maximized='true' name='Average Sentiment by Content Type'>
+    <window class='worksheet' name='Average Sentiment by Content Type'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -2782,6 +2971,11 @@
           </strip>
           <strip size='31'>
             <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='9' param='[federated.1rgcbei1xjtpqn1dko4c416qswt6].[:Measure Names]' type='color' />
           </strip>
         </edge>
       </cards>
