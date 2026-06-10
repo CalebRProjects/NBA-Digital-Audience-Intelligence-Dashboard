@@ -26,7 +26,9 @@ tableau_export_path <- "data/exports/tableau_video_level_export.csv"
 # Load data --------------------------------------------------------------
 
 videos_raw <- readr::read_csv(videos_raw_path, show_col_types = FALSE) |>
-  janitor::clean_names()
+  dplyr::mutate(
+    channel_name = dplyr::coalesce(channel_title, team)
+  )
 
 video_sentiment_summary <- readr::read_csv(video_sentiment_summary_path, show_col_types = FALSE) |>
   janitor::clean_names()
@@ -108,7 +110,6 @@ videos_clean <- videos_raw |>
     team,
     team_abbreviation,
     conference,
-    channel_name,
     channel_id,
     channel_title,
     video_title,
@@ -141,8 +142,54 @@ videos_clean <- videos_raw |>
 
 # Save outputs -----------------------------------------------------------
 
+# Full cleaned dataset for SQL / archive
 readr::write_csv(videos_clean, videos_clean_path)
-readr::write_csv(videos_clean, tableau_export_path)
+
+# Tableau-safe export with the same schema as before
+tableau_export <- videos_clean |>
+  dplyr::mutate(
+    dplyr::across(
+      where(is.character),
+      ~ stringr::str_replace_all(.x, "[\r\n]+", " ")
+    ),
+    video_description = stringr::str_squish(video_description)
+  ) |>
+  dplyr::select(
+    video_id,
+    team,
+    team_abbreviation,
+    conference,
+    channel_id,
+    channel_title,
+    video_title,
+    video_description,
+    published_at,
+    published_date,
+    published_hour,
+    published_month,
+    duration,
+    content_type,
+    message_theme,
+    view_count,
+    like_count,
+    comment_count,
+    like_count_clean,
+    comment_count_clean,
+    engagement_count,
+    engagement_rate,
+    likes_per_1k_views,
+    comments_per_1k_views,
+    views_per_day,
+    comments_pulled,
+    avg_comment_sentiment,
+    positive_comment_pct,
+    neutral_comment_pct,
+    negative_comment_pct,
+    sentiment_bucket,
+    monitoring_priority
+  )
+
+readr::write_csv(tableau_export, tableau_export_path)
 
 # QA checks --------------------------------------------------------------
 

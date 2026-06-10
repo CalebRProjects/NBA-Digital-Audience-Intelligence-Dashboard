@@ -34,17 +34,79 @@ videos_base_raw_path <- "data/raw/youtube_videos_base_raw.csv"
 videos_raw_path <- "data/raw/youtube_videos_raw.csv"
 comments_raw_path <- "data/raw/youtube_comments_raw.csv"
 
+
+# Project settings -------------------------------------------------------
+
+PLAYOFF_START_DATE <- as.Date("2026-04-18")
+END_DATE <- Sys.Date()
+
+MAX_VIDEOS_PER_TEAM <- 20
+SEARCH_RESULTS_PER_TEAM <- 100
+
 # Load team channel reference -------------------------------------------
 
-team_channels <- readr::read_csv(team_channels_path, show_col_types = FALSE) |>
-  janitor::clean_names() |>
-  filter(!is.na(channel_id))
+team_channels <- tibble::tribble(
+  ~team, ~team_abbreviation, ~conference, ~seed, ~channel_id,
+  "Detroit Pistons", "DET", "East", 1, "UCtcSBo9EzOtXHxiPhU6RN8A",
+  "Orlando Magic", "ORL", "East", 8, "UCxHFH-yfbhUrsWY4prPx3oQ",
+  "Boston Celtics", "BOS", "East", 2, "UCMfT9dr6xC_RIWoA9hI0meQ",
+  "Philadelphia 76ers", "PHI", "East", 7, "UC5qJUyng_ezl0TVjVJFqtfQ",
+  "New York Knicks", "NYK", "East", 3, "UC0hb8f0OXHEzDrJDUq-YVVw",
+  "Atlanta Hawks", "ATL", "East", 6, "UCpfcwELvR1wtcRJ0UxNXHYw",
+  "Cleveland Cavaliers", "CLE", "East", 4, "UCOdS-I1sYkKWhtTjMUWP_TA",
+  "Toronto Raptors", "TOR", "East", 5, "UCYBFE432C2AmNRDGEXE4uVg",
+  "Oklahoma City Thunder", "OKC", "West", 1, "UCpXdQhy6kb5CTD8hKlmOL3w",
+  "Phoenix Suns", "PHX", "West", 8, "UCLxlWVVHz2a8SdCfxzVXzQw",
+  "San Antonio Spurs", "SAS", "West", 2, "UCEZHE-0CoHqeL1LGFa2EmQw",
+  "Portland Trail Blazers", "POR", "West", 7, "UCXk66yyzXo7-2M1BMqLhltQ",
+  "Denver Nuggets", "DEN", "West", 3, "UCl8hzdP5wVlhuzNG3WCJa1w",
+  "Minnesota Timberwolves", "MIN", "West", 6, "UCXWDN5NKVFgnPt25CMh98Cg",
+  "Los Angeles Lakers", "LAL", "West", 4, "UC8CSt-oVqy8pUAoKSApTxQw",
+  "Houston Rockets", "HOU", "West", 5, "UCVD7l69MVGFq_wzQvbk9HbQ"
+) |>
+  dplyr::mutate(channel_name = team)
 
-glimpse(team_channels)
-
-if (nrow(team_channels) == 0) {
-  stop("No channel IDs found. Fill data/raw/nba_team_youtube_channels.csv before collecting videos.")
+validate_channel <- function(channel_id) {
+  resp <- httr2::request("https://www.googleapis.com/youtube/v3/channels") |>
+    httr2::req_url_query(
+      part = "snippet,statistics",
+      id = channel_id,
+      key = api_key
+    ) |>
+    httr2::req_perform() |>
+    httr2::resp_body_json(simplifyVector = TRUE)
+  
+  if (length(resp$items) == 0) {
+    return(tibble::tibble(
+      checked_channel_id = channel_id,
+      channel_title = NA_character_,
+      subscriber_count = NA_real_,
+      valid_channel = FALSE
+    ))
+  }
+  
+  tibble::tibble(
+    checked_channel_id = channel_id,
+    channel_title = resp$items$snippet$title,
+    subscriber_count = as.numeric(resp$items$statistics$subscriberCount),
+    valid_channel = TRUE
+  )
 }
+
+channel_check <- team_channels |>
+  dplyr::mutate(channel_info = purrr::map(channel_id, validate_channel)) |>
+  tidyr::unnest(channel_info)
+
+channel_check |>
+  dplyr::select(
+    team,
+    team_abbreviation,
+    channel_id,
+    channel_title,
+    subscriber_count,
+    valid_channel
+  ) |>
+  print(n = 20)
 
 # Helper: search for YouTube channels -----------------------------------
 # Use this manually if you need to find more channel IDs later.
@@ -91,40 +153,83 @@ pluck_num_safe <- function(x) {
   as.numeric(x)
 }
 
-# Helper: get recent videos from a channel -------------------------------
+# Helper: get uploads playlist for a channel -----------------------------
 
-get_channel_videos <- function(channel_id, api_key, published_after, max_results = 20) {
+get_uploads_playlist_id <- function(channel_id, api_key) {
   
-  response <- request("https://www.googleapis.com/youtube/v3/search") |>
-    req_url_query(
-      part = "snippet",
-      channelId = channel_id,
-      type = "video",
-      order = "date",
-      publishedAfter = published_after,
-      maxResults = max_results,
+  response <- httr2::request("https://www.googleapis.com/youtube/v3/channels") |>
+    httr2::req_url_query(
+      part = "contentDetails",
+      id = channel_id,
       key = api_key
     ) |>
-    req_perform() |>
-    resp_body_json(simplifyVector = TRUE)
+    httr2::req_perform() |>
+    httr2::resp_body_json(simplifyVector = FALSE)
   
   if (length(response$items) == 0) {
+    return(NA_character_)
+  }
+  
+  response$items[[1]]$contentDetails$relatedPlaylists$uploads
+}
+
+# Helper: get recent uploads from a channel ------------------------------
+
+get_channel_videos <- function(channel_id, api_key, max_results = 100) {
+  
+  uploads_playlist_id <- get_uploads_playlist_id(channel_id, api_key)
+  
+  if (is.na(uploads_playlist_id)) {
     return(tibble())
   }
   
-  tibble(
-    video_id = response$items$id$videoId,
-    published_at = response$items$snippet$publishedAt,
-    channel_title = response$items$snippet$channelTitle,
-    video_title = response$items$snippet$title,
-    video_description = response$items$snippet$description
-  )
+  all_items <- list()
+  next_page_token <- NULL
+  results_collected <- 0
+  
+  repeat {
+    
+    response <- httr2::request("https://www.googleapis.com/youtube/v3/playlistItems") |>
+      httr2::req_url_query(
+        part = "snippet,contentDetails",
+        playlistId = uploads_playlist_id,
+        maxResults = min(50, max_results - results_collected),
+        pageToken = next_page_token,
+        key = api_key
+      ) |>
+      httr2::req_perform() |>
+      httr2::resp_body_json(simplifyVector = FALSE)
+    
+    if (length(response$items) == 0) {
+      break
+    }
+    
+    all_items[[length(all_items) + 1]] <- purrr::map_dfr(response$items, function(item) {
+      tibble(
+        video_id = item$contentDetails$videoId,
+        published_at = item$contentDetails$videoPublishedAt,
+        channel_title = item$snippet$channelTitle,
+        video_title = item$snippet$title,
+        video_description = item$snippet$description
+      )
+    })
+    
+    results_collected <- results_collected + length(response$items)
+    next_page_token <- response$nextPageToken
+    
+    if (is.null(next_page_token) || results_collected >= max_results) {
+      break
+    }
+    
+    Sys.sleep(0.1)
+  }
+  
+  dplyr::bind_rows(all_items)
 }
 
 # Pull recent videos -----------------------------------------------------
 
-published_after <- as.character(Sys.Date() - 183)
-published_after <- paste0(published_after, "T00:00:00Z")
+published_after <- paste0(PLAYOFF_START_DATE, "T00:00:00Z")
 
 videos_base <- team_channels |>
   mutate(
@@ -133,8 +238,7 @@ videos_base <- team_channels |>
       ~ get_channel_videos(
         channel_id = .x,
         api_key = api_key,
-        published_after = published_after,
-        max_results = 20
+        max_results = SEARCH_RESULTS_PER_TEAM
       )
     )
   ) |>
@@ -142,13 +246,40 @@ videos_base <- team_channels |>
     team,
     team_abbreviation,
     conference,
-    channel_name,
     channel_id,
     video_data
   ) |>
-  tidyr::unnest(video_data)
+  tidyr::unnest(video_data) |>
+  mutate(
+    published_at_datetime = lubridate::ymd_hms(published_at),
+    published_date = lubridate::as_date(published_at_datetime)
+  ) |>
+  filter(
+    published_date >= PLAYOFF_START_DATE,
+    published_date <= END_DATE
+  ) |>
+  group_by(team) |>
+  arrange(desc(published_at_datetime), .by_group = TRUE) |>
+  slice_head(n = MAX_VIDEOS_PER_TEAM) |>
+  ungroup() |>
+  select(
+    team,
+    team_abbreviation,
+    conference,
+    channel_id,
+    video_id,
+    published_at,
+    channel_title,
+    video_title,
+    video_description
+  )
 
 glimpse(videos_base)
+
+videos_base |>
+  count(team, name = "videos_collected") |>
+  arrange(team) |>
+  print(n = 20)
 
 readr::write_csv(videos_base, videos_base_raw_path)
 
