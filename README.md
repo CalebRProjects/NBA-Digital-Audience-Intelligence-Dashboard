@@ -22,13 +22,19 @@ The project focuses on three core questions:
 
 Provides a high-level summary of total views, total engagements, weighted engagement rate, negative comment share, average sentiment, team-level reach, engagement efficiency, and publishing trends.
 
+![Executive Overview](tableau/dashboard_screenshots/executive_overview.png)
+
 ### Content & Audience Response
 
 Compares content type, message theme, discussion rate, engagement quality, and sentiment mix to identify which formats and storylines appear most effective.
 
+![Content & Audience Response](tableau/dashboard_screenshots/content_audience_response.png)
+
 ### Digital Monitoring & Sentiment Risk
 
 Flags videos with high engagement, high negative sentiment, or both. This page is designed as a digital monitoring workflow for identifying videos that may require closer review.
+
+![Digital Monitoring & Sentiment Risk](tableau/dashboard_screenshots/digital_monitoring_sentiment_risk.png)
 
 ## Data Sources
 
